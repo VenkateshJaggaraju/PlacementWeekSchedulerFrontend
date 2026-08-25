@@ -1,0 +1,220 @@
+/* Home.css */
+
+.home-container {
+    min-height: 100vh;
+    padding: 50px;
+    background:
+        radial-gradient(circle at top left, #e8f0ff, transparent 35%),
+        radial-gradient(circle at bottom right, #dfe7ff, transparent 35%),
+        #f4f6fb;
+
+    font-family: Arial, sans-serif;
+}
+
+/* ---------------- HEADER ---------------- */
+
+.home-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.home-header h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 12px;
+
+    color: #1e293b;
+
+    text-shadow:
+        1px 1px 0 #cbd5e1,
+        2px 2px 0 #cbd5e1,
+        3px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.home-header p {
+    font-size: 17px;
+    color: #64748b;
+    }
+
+/* ---------------- GRID ---------------- */
+
+.dashboard-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+
+    perspective: 1200px;
+}
+
+/* ---------------- 3D CARD ---------------- */
+
+.dashboard-card {
+    position: relative;
+
+    min-height: 190px;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 30px;
+
+    text-align: left;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #e8edf7
+    );
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    box-shadow:
+        10px 10px 20px rgba(0, 0, 0, 0.15),
+        -8px -8px 18px rgba(255, 255, 255, 0.9);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+    overflow: hidden;
+    }
+
+    /* 3D bottom/right edge */
+
+    .dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    right: -8px;
+    bottom: -8px;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #cbd5e1;
+
+    z-index: -1;
+
+    transform: translateZ(-20px);
+}
+
+/* Light reflection */
+
+.dashboard-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: -50%;
+    left: -60%;
+
+    width: 80%;
+    height: 200%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+    );
+
+    transform: rotate(25deg);
+
+    transition: left 0.6s ease;
+}
+
+/* ---------------- HOVER ---------------- */
+
+.dashboard-card:hover {
+    transform:
+        translateY(-15px)
+        rotateX(7deg)
+        rotateY(-7deg)
+        scale(1.03);
+
+    box-shadow:
+        18px 25px 35px rgba(0, 0, 0, 0.22),
+        -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+
+.dashboard-card:hover::after {
+    left: 120%;
+}
+
+/* ---------------- CARD CONTENT ---------------- */
+
+.dashboard-card h2 {
+    position: relative;
+
+    margin: 0 0 15px;
+
+    font-size: 25px;
+
+    color: #1e293b;
+
+    transform: translateZ(30px);
+
+    transition: transform 0.3s ease;
+}
+
+.dashboard-card p {
+    position: relative;
+
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: #64748b;
+
+    transform: translateZ(20px);
+
+    transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover h2 {
+    transform: translateZ(45px);
+}
+
+.dashboard-card:hover p {
+    transform: translateZ(35px);
+}
+
+/* ---------------- CLICK EFFECT ---------------- */
+
+.dashboard-card:active {
+    transform:
+    translateY(-5px)
+    scale(0.98);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .home-container {
+        padding: 25px;
+    }
+
+    .home-header h1 {
+        font-size: 32px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
