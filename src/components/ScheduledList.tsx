@@ -40,10 +40,10 @@ export const InterviewList = () => {
     const [interviews, setInterviews] = useState<Interview[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-   
+    // 9 interviews per page = 3 × 3
     const interviewsPerPage = 9;
 
-   
+    // 3 page numbers displayed at a time
     const pagesPerGroup = 3;
 
     useEffect(() => {
@@ -72,24 +72,24 @@ export const InterviewList = () => {
 
     }, []);
 
-   
+    // Total number of pages
     const totalPages = Math.ceil(
         interviews.length / interviewsPerPage
     );
 
-   
+    // Starting index
     const startIndex =
         (currentPage - 1) * interviewsPerPage;
 
-    
+    // Ending index
     const endIndex =
         startIndex + interviewsPerPage;
 
-    
+    // Interviews for current page
     const currentInterviews =
         interviews.slice(startIndex, endIndex);
 
-   
+    // Format date/time
     const formatDateTime = (dateTime?: string) => {
 
         if (!dateTime) {
@@ -99,7 +99,14 @@ export const InterviewList = () => {
         return new Date(dateTime).toLocaleString();
     };
 
-    
+    /*
+     * PAGINATION GROUP
+     *
+     * Page 1, 2, 3  →  1 2 3
+     * Page 4, 5, 6  →  4 5 6
+     * Page 7, 8, 9  →  7 8 9
+     * etc.
+     */
 
     const currentGroup =
         Math.ceil(currentPage / pagesPerGroup);
@@ -129,7 +136,10 @@ export const InterviewList = () => {
 
             <h1>Interviews</h1>
 
-           
+            {/* ============================= */}
+            {/* 3 × 3 INTERVIEW GRID */}
+            {/* ============================= */}
+
             <div className="interview-grid">
 
                 {currentInterviews.map(interview => (
@@ -139,14 +149,14 @@ export const InterviewList = () => {
                         key={interview.id}
                     >
 
-                    
+                        {/* Company */}
 
                         <h2>
                             {interview.company?.companyName ||
                                 "Unknown Company"}
                         </h2>
 
-                       
+                        {/* Student */}
 
                         <p>
                             <strong>Student:</strong>{" "}
@@ -154,21 +164,21 @@ export const InterviewList = () => {
                                 "Unknown Student"}
                         </p>
 
-                        
+                        {/* CGPA */}
 
                         <p>
                             <strong>CGPA:</strong>{" "}
                             {interview.student?.cgpa ?? "-"}
                         </p>
 
-                        
+                        {/* Branch */}
 
                         <p>
                             <strong>Branch:</strong>{" "}
                             {interview.student?.branch || "-"}
                         </p>
 
-                        
+                        {/* Panel */}
 
                         <p>
                             <strong>Panel:</strong>{" "}
@@ -177,7 +187,7 @@ export const InterviewList = () => {
                                 "Not assigned"}
                         </p>
 
-                        
+                        {/* Room */}
 
                         <p>
                             <strong>Room:</strong>{" "}
@@ -186,7 +196,7 @@ export const InterviewList = () => {
                                 "Not assigned"}
                         </p>
 
-                        
+                        {/* Start Time */}
 
                         <p>
                             <strong>Start:</strong>{" "}
@@ -195,7 +205,7 @@ export const InterviewList = () => {
                             )}
                         </p>
 
-                       
+                        {/* End Time */}
 
                         <p>
                             <strong>End:</strong>{" "}
@@ -204,14 +214,14 @@ export const InterviewList = () => {
                             )}
                         </p>
 
-                        
+                        {/* Status */}
 
                         <p>
                             <strong>Status:</strong>{" "}
                             {interview.interviewStatus}
                         </p>
 
-                       
+                        {/* Failure Reason */}
 
                         {interview.interviewFailureReason && (
 
@@ -229,13 +239,15 @@ export const InterviewList = () => {
             </div>
 
 
-           
+            {/* ============================= */}
+            {/* PAGINATION */}
+            {/* ============================= */}
 
             {totalPages > 1 && (
 
                 <div className="pagination">
 
-                   
+                    {/* Previous */}
 
                     <button
                         disabled={currentPage === 1}
@@ -253,7 +265,7 @@ export const InterviewList = () => {
                     </button>
 
 
-                   
+                    {/* Page Numbers */}
 
                     {pageNumbers.map(page => (
 
@@ -274,7 +286,7 @@ export const InterviewList = () => {
                     ))}
 
 
-                   
+                    {/* Next */}
 
                     <button
                         disabled={

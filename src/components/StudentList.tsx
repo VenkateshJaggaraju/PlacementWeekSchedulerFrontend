@@ -14,7 +14,7 @@ export const StudentList = () => {
     const [students, setStudents] = useState<Student[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    
+    // 9 students per page
     const studentsPerPage = 9;
 
     useEffect(() => {
@@ -38,20 +38,20 @@ export const StudentList = () => {
 
     }, []);
 
-    
+    // Total number of pages
     const totalPages = Math.ceil(
         students.length / studentsPerPage
     );
 
-    
+    // Starting index
     const startIndex =
         (currentPage - 1) * studentsPerPage;
 
-    
+    // Ending index
     const endIndex =
         startIndex + studentsPerPage;
 
-  
+    // Students for current page
     const currentStudents =
         students.slice(startIndex, endIndex);
 
@@ -60,7 +60,7 @@ export const StudentList = () => {
 
             <h1>Students</h1>
 
-           
+            {/* 3 × 3 student grid */}
             <div className="student-grid">
 
                 {currentStudents.map(student => (
@@ -70,22 +70,27 @@ export const StudentList = () => {
                         key={student.id}
                     >
 
-                        
+                        {/* 1. ID */}
+                        {/* <p>
+                            <strong>ID:</strong> {student.id}
+                        </p> */}
+
+                        {/* 2. Student Name */}
                         <h2>       
                             {student.studentName}
                         </h2>
 
-                        
+                        {/* 3. CGPA */}
                         <p>
                             <strong>CGPA:</strong> {student.cgpa}
                         </p>
 
-                        
+                        {/* 4. Branch */}
                         <p>
                             <strong>Branch:</strong> {student.branch}
                         </p>
 
-                        
+                        {/* 5. Application Status */}
                         <p>
                             <strong>Status:</strong>{" "}
                             {student.applicationStatus || "ACTIVE"}
@@ -97,7 +102,7 @@ export const StudentList = () => {
 
             </div>
 
-            
+            {/* Pagination */}
             {totalPages > 1 && (
 
                 <div className="pagination">

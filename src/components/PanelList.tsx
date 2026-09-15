@@ -13,7 +13,7 @@ export const PanelList = () => {
     const [panels, setPanels] = useState<Panel[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    
+    // 9 panels per page
     const panelsPerPage = 9;
 
     useEffect(() => {
@@ -39,19 +39,20 @@ export const PanelList = () => {
 
     }, []);
 
+    // Total pages
     const totalPages = Math.ceil(
         panels.length / panelsPerPage
     );
 
-  
+    // Starting index
     const startIndex =
         (currentPage - 1) * panelsPerPage;
 
-    
+    // Ending index
     const endIndex =
         startIndex + panelsPerPage;
 
-    
+    // Panels for current page
     const currentPanels =
         panels.slice(startIndex, endIndex);
 

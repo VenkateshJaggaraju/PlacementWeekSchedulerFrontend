@@ -18,7 +18,7 @@ export const CompanyList = () => {
     const [companies, setCompanies] = useState<Company[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    
+    // 9 companies per page
     const companiesPerPage = 9;
 
     useEffect(() => {
@@ -41,20 +41,20 @@ export const CompanyList = () => {
 
     }, []);
 
-    
+    // Total pages
     const totalPages = Math.ceil(
         companies.length / companiesPerPage
     );
 
-   
+    // Starting index
     const startIndex =
         (currentPage - 1) * companiesPerPage;
 
-   
+    // Ending index
     const endIndex =
         startIndex + companiesPerPage;
 
-   
+    // Companies for current page
     const currentCompanies =
         companies.slice(startIndex, endIndex);
 

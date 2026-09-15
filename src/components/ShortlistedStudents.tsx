@@ -14,7 +14,7 @@ export const ShortlistedStudents = () => {
     const [students, setStudents] = useState<Student[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    
+    // 9 students per page = 3 × 3
     const studentsPerPage = 9;
 
     useEffect(() => {
@@ -51,20 +51,20 @@ export const ShortlistedStudents = () => {
 
     }, []);
 
-    
+    // Total pages
     const totalPages = Math.ceil(
         students.length / studentsPerPage
     );
 
-   
+    // Starting index
     const startIndex =
         (currentPage - 1) * studentsPerPage;
 
-    
+    // Ending index
     const endIndex =
         startIndex + studentsPerPage;
 
-   
+    // Students for current page
     const currentStudents =
         students.slice(startIndex, endIndex);
 
@@ -74,7 +74,7 @@ export const ShortlistedStudents = () => {
 
             <h1>Shortlisted Students</h1>
 
-            
+            {/* 3 × 3 Student Grid */}
 
             <div className="shortlisted-grid">
 
@@ -110,7 +110,7 @@ export const ShortlistedStudents = () => {
 
             </div>
 
-            
+            {/* No students */}
 
             {students.length === 0 && (
 
@@ -120,13 +120,13 @@ export const ShortlistedStudents = () => {
 
             )}
 
-           
+            {/* Pagination */}
 
             {totalPages > 1 && (
 
                 <div className="pagination">
 
-                    
+                    {/* Previous */}
 
                     <button
                         disabled={currentPage === 1}
@@ -139,7 +139,7 @@ export const ShortlistedStudents = () => {
                         Previous
                     </button>
 
-                   
+                    {/* Page Numbers */}
 
                     {Array.from(
                         { length: totalPages },
@@ -162,7 +162,7 @@ export const ShortlistedStudents = () => {
 
                     ))}
 
-                    
+                    {/* Next */}
 
                     <button
                         disabled={

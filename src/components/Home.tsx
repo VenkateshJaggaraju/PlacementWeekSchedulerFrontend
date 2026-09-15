@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styling/Home.css";
 
 const menuItems = [
@@ -56,7 +56,7 @@ export default function Home() {
                 // onClick={() => navigate(item.path)}
             >
                 <h2>{item.title}</h2>
-                <a href={item.path}><p>{item.description}</p></a>
+                <Link to={item.path}><p>{item.description}</p></Link>
             </button>
             ))}
 

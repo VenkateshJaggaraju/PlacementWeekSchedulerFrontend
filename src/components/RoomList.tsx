@@ -12,7 +12,7 @@ export const RoomList = () => {
     const [rooms, setRooms] = useState<Room[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    
+    // 9 rooms per page
     const roomsPerPage = 9;
 
     useEffect(() => {
@@ -38,20 +38,20 @@ export const RoomList = () => {
 
     }, []);
 
-   
+    // Total pages(99/9 = 11 pages)
     const totalPages = Math.ceil(
         rooms.length / roomsPerPage
     );
 
-  
+    // Starting index
     const startIndex =
         (currentPage - 1) * roomsPerPage;
 
-    
+    // Ending index
     const endIndex =
         startIndex + roomsPerPage;
 
-    
+    // Rooms for current page
     const currentRooms =
         rooms.slice(startIndex, endIndex);
 
